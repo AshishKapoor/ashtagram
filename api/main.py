@@ -1,7 +1,9 @@
+from unicodedata import name
 from fastapi import FastAPI
 from db import models
 from db.database import engine
 from routers import user, post
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
@@ -15,3 +17,5 @@ def root():
 
 
 models.Base.metadata.create_all(engine)
+
+app.mount('/images', StaticFiles(directory='images'), name='images')
