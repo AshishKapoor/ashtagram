@@ -30,6 +30,11 @@ def create_post(request: PostBase, db: Session = Depends(get_db), current_user: 
     return db_post.create_post(db, request)
 
 
+@router.get('/delete/{id}')
+def delete_post(id: int, db: Session = Depends(get_db), current_user: UserAuth = Depends(get_current_user)):
+    return db_post.delete_post(db, id, current_user.id)
+
+
 @router.get('/all', response_model=List[PostDisplay])
 def posts(db: Session = Depends(get_db)):
     return db_post.get_all(db)
