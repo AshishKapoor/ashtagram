@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, UploadFile, status, File
 from fastapi.exceptions import HTTPException
 from sqlalchemy.orm import Session
+from auth.oauth2 import get_current_user
 from routers.schemas import PostBase, PostDisplay
 from db.database import get_db
 from db import db_post
@@ -8,6 +9,8 @@ from typing import List
 import random
 import string
 import shutil
+from routers.schemas import UserAuth
+
 
 router = APIRouter(
     prefix='/post',
@@ -18,7 +21,7 @@ image_url_types = ['absolute', 'relative']
 
 
 @router.post('', response_model=PostDisplay)
-def create_post(request: PostBase, db: Session = Depends(get_db)):
+def create_post(request: PostBase, db: Session = Depends(get_db), current_user: UserAuth = Depends(get_current_user)):
     if not request.image_url_type in image_url_types:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -33,7 +36,7 @@ def posts(db: Session = Depends(get_db)):
 
 
 @router.post('/image')
-def upload_image(image: UploadFile = File(...)):
+def upload_image(image: UploadFile = File(...), current_user: UserAuth = Depends(get_current_user)):
     letters = string.ascii_letters
     rand_str = ''.join(random.choice(letters)
                        for i in range(6))  # random file name generator
