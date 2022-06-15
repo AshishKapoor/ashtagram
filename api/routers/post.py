@@ -21,7 +21,11 @@ image_url_types = ['absolute', 'relative']
 
 
 @router.post('', response_model=PostDisplay)
-def create_post(request: PostBase, db: Session = Depends(get_db), current_user: UserAuth = Depends(get_current_user)):
+def create_post(
+    request: PostBase,
+    db: Session = Depends(get_db),
+    current_user: UserAuth = Depends(get_current_user)
+):
     if not request.image_url_type in image_url_types:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -31,7 +35,11 @@ def create_post(request: PostBase, db: Session = Depends(get_db), current_user: 
 
 
 @router.get('/delete/{id}')
-def delete_post(id: int, db: Session = Depends(get_db), current_user: UserAuth = Depends(get_current_user)):
+def delete_post(
+    id: int,
+    db: Session = Depends(get_db),
+    current_user: UserAuth = Depends(get_current_user)
+):
     return db_post.delete_post(db, id, current_user.id)
 
 
@@ -41,7 +49,10 @@ def posts(db: Session = Depends(get_db)):
 
 
 @router.post('/image')
-def upload_image(image: UploadFile = File(...), current_user: UserAuth = Depends(get_current_user)):
+def upload_image(
+    image: UploadFile = File(...),
+    current_user: UserAuth = Depends(get_current_user)
+):
     letters = string.ascii_letters
     rand_str = ''.join(random.choice(letters)
                        for i in range(6))  # random file name generator

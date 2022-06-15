@@ -1,5 +1,3 @@
-from os import access
-from venv import create
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from db.database import get_db
