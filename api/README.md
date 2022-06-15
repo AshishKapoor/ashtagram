@@ -15,3 +15,7 @@
 ### Run backend
 
 `uvicorn main:app --reload`
+
+### Open URL
+
+`http://localhost:8000/docs`
