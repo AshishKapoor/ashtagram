@@ -68,7 +68,6 @@ function App() {
     fetch(BASE_URL + "post/all")
       .then((response) => {
         const json = response.json();
-        console.log(json);
         if (response.ok) {
           return json;
         }
@@ -92,7 +91,7 @@ function App() {
         setPosts(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         alert(error);
       });
   }, []);
@@ -117,14 +116,13 @@ function App() {
         throw response;
       })
       .then((data) => {
-        console.log(data);
         setAuthToken(data.access_token);
         setAuthTokenType(data.token_type);
         setUserId(data.user_id);
         setUsername(data.username);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         alert(error);
       });
 
@@ -160,12 +158,11 @@ function App() {
         }
         throw response;
       })
-      .then((data) => {
-        // console.log(data);
+      .then(() => {
         signIn();
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         alert(error);
       });
 
@@ -258,6 +255,7 @@ function App() {
       <div className="app_posts">
         {posts.map((post) => (
           <Post
+            key={post.id}
             post={post}
             authToken={authToken}
             authTokenType={authTokenType}

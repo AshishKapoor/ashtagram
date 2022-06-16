@@ -38,7 +38,7 @@ function Post({ post, authToken, authTokenType, username }) {
         throw response;
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
@@ -70,7 +70,7 @@ function Post({ post, authToken, authTokenType, username }) {
         fetchComments();
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       })
       .finally(() => {
         setNewComment("");
@@ -89,7 +89,7 @@ function Post({ post, authToken, authTokenType, username }) {
         setComments(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
@@ -111,7 +111,7 @@ function Post({ post, authToken, authTokenType, username }) {
 
       <div className="post_comments">
         {comments.map((comment) => (
-          <p>
+          <p key={comment.username}>
             <strong>{comment.username}:</strong> {comment.text}
           </p>
         ))}

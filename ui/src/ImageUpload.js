@@ -38,7 +38,7 @@ function ImageUpload({ authToken, authTokenType, userId }) {
         createPost(data.filename);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       })
       .finally(() => {
         setCaption("");
@@ -76,7 +76,7 @@ function ImageUpload({ authToken, authTokenType, userId }) {
         window.scrollTo(0, 0);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
