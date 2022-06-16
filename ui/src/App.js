@@ -62,7 +62,7 @@ function App() {
     userId
       ? window.localStorage.setItem("userId", userId)
       : window.localStorage.removeItem("userId");
-  }, [authToken, authTokenType, userId]);
+  }, [authToken, authTokenType, userId, username]);
 
   useEffect(() => {
     fetch(BASE_URL + "post/all")
