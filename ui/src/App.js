@@ -1,3 +1,4 @@
+import { Button } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import "./App.css";
 import Post from "./Post";
@@ -6,6 +7,9 @@ export const BASE_URL = "http://127.0.0.1:8000/";
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [openSignIn, setOpenSignIn] = useState(false);
+  const [openSignUp, setOpenSignUp] = useState(false);
+
   useEffect(() => {
     fetch(BASE_URL + "post/all")
       .then((response) => {
@@ -16,14 +20,18 @@ function App() {
       })
       .then((data) => {
         // return data.reverse();
-        const result = data.sort((a,b) => {
+        const result = data.sort((a, b) => {
           // 2022-06-15T11:18:59.014091
           const t_a = a.timestamp.split(/[-T:]/);
           const t_b = b.timestamp.split(/[-T:]/);
-          const date_a = new Date(Date.UTC(t_a[0], t_a[1]-1, t_a[2], t_a[3], t_a[4], t_a[5]))
-          const date_b = new Date(Date.UTC(t_b[0], t_b[1]-1, t_b[2], t_b[3], t_b[4], t_b[5]))
+          const date_a = new Date(
+            Date.UTC(t_a[0], t_a[1] - 1, t_a[2], t_a[3], t_a[4], t_a[5])
+          );
+          const date_b = new Date(
+            Date.UTC(t_b[0], t_b[1] - 1, t_b[2], t_b[3], t_b[4], t_b[5])
+          );
           return date_b - date_a;
-        })
+        });
         return result;
       })
       .then((data) => {
@@ -35,10 +43,24 @@ function App() {
       });
   }, []);
   return (
-    <div className="app_posts">
-      {posts.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
+    <div className="app">
+      <div className="app_header">
+        <img
+          className="app_header_image"
+          src="https://freeiconshop.com/wp-content/uploads/edd/instagram-new-outline.png"
+          alt="ashtagram"
+          height="40px"
+        />
+        <div>
+          <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+          <Button onClick={() => setOpenSignUp(true)}>Sign Up</Button>
+        </div>
+      </div>
+      <div className="app_posts">
+        {posts.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
+      </div>
     </div>
   );
 }
