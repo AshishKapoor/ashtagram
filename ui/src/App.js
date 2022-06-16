@@ -6,7 +6,6 @@ export const BASE_URL = "http://127.0.0.1:8000/";
 
 function App() {
   const [posts, setPosts] = useState([]);
-  console.log("posts: ", posts);
   useEffect(() => {
     fetch(BASE_URL + "post/all")
       .then((response) => {

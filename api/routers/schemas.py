@@ -46,6 +46,7 @@ class PostDisplay(BaseModel):
     id: int
     image_url: str
     image_url_type: str
+    caption: str
     timestamp: datetime
     user: User
     comments: List[Comment]
