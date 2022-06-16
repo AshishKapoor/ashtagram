@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Post.css";
 import { Avatar, Button } from "@material-ui/core";
-
-const BASE_URL = "http://localhost:8000/";
+import { BASE_URL } from "./App";
 
 function Post({ post, authToken, authTokenType, username }) {
   const [imageUrl, setImageUrl] = useState("");
