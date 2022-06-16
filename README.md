@@ -2,4 +2,5 @@
 An instagram clone.
 
 ## screenshot
-<img width="1235" alt="Screenshot 2022-06-16 at 11 00 19 AM" src="https://user-images.githubusercontent.com/5203107/173998377-da275922-653d-45e6-8c8d-7e4631f32e2e.png">
+
+<img width="1235" alt="Screenshot 2022-06-16 at 11 28 48 AM" src="https://user-images.githubusercontent.com/5203107/174001836-a6d210b0-597a-4123-9ea3-b24a6a807323.png">
