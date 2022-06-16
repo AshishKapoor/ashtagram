@@ -15,11 +15,11 @@ function Post({ post, authToken, authTokenType, username }) {
     } else {
       setImageUrl(BASE_URL + post.image_url);
     }
-  }, []);
+  }, [post.image_url, post.image_url_type]);
 
   useEffect(() => {
     setComments(post.comments);
-  }, []);
+  }, [post.comments]);
 
   const handleDelete = (event) => {
     event?.preventDefault();
