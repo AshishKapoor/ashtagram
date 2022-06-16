@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "./Post.css";
 import { BASE_URL } from "./App";
+import { Avatar, Button } from "@material-ui/core";
 
 function Post({ post }) {
-  const { image_url, image_url_type, username } = post;
+  const { image_url, image_url_type } = post;
   const [imageUrl, setImageUrl] = useState("");
   const [comments, setComments] = useState([]);
 
@@ -21,6 +22,13 @@ function Post({ post }) {
 
   return (
     <div className="post">
+      <div className="post_header">
+        <Avatar alt="Ashish" src="" />
+        <div className="post_header_info">
+          <h3>{post.user.username}</h3>
+          <Button className="post_delete">Delete</Button>
+        </div>
+      </div>
       <img className="post_image" src={imageUrl} alt="post" />
       <h4 className="post_text">{post.caption}</h4>
       <div className="post_comments">
