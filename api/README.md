@@ -16,6 +16,6 @@
 
 `uvicorn main:app --reload`
 
-### Open URL
+### Open URL for the swagger ui
 
 `http://localhost:8000/docs`
